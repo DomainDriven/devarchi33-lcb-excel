@@ -5,4 +5,4 @@ target/
 *.class
 build/
 out/
-bower/
+#bower/
