@@ -1,0 +1,30 @@
+{
+  "name": "devarchi33-manmonth",
+  "authors": [
+    "devarchi33@gmail.com"
+  ],
+  "description": "임춘봉 상무님의 excel 프로그램을 변환한 어플리켄이션 입니다",
+  "main": "",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "keywords": [
+    "ManMonth"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "AdminLTE": "adminlte#^2.3.3"
+  }
+}
