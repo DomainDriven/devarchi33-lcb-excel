@@ -52,7 +52,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control pull-right" id="reservation"
+                                    <input type="text" class="form-control pull-right" id="manMonthDuration"
                                            name="daterange"/>
                                 </div>
                                 <!-- /.input group -->
@@ -61,7 +61,8 @@
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer clearfix no-border">
-                            <button type="button" class="btn btn-default pull-right"><i class="fa fa-share"></i> Submit
+                            <button type="button" class="btn btn-default pull-right" id="manMonthSubmit"><i
+                                    class="fa fa-share"></i> Submit
                             </button>
                         </div>
                         <!-- /.box-footer -->
@@ -81,7 +82,7 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <p>result</p>
+                            <p id="manMonthResult"></p>
                         </div>
                         <!-- /.box-body -->
                     </div>
@@ -112,6 +113,22 @@
 <script>
     $(function () {
         $('input[name="daterange"]').daterangepicker();
+        $('#manMonthSubmit').on('click', function () {
+            var duration = $('#manMonthDuration').val();
+            $.ajax({
+                url: 'calcManMonth',
+                type: 'post',
+                data: {
+                    duration: duration
+                },
+                success: function (response) {
+                    $("#manMonthResult").text(response);
+                },
+                error: function (err) {
+                    alert(JSON.stringify(err));
+                }
+            });
+        });
     });
 </script>
 </body>
