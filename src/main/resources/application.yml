@@ -1,0 +1,7 @@
+flyway:
+  enabled: true
+server:
+  port: 8080
+spring:
+  thymeleaf:
+    encoding: UTF-8
