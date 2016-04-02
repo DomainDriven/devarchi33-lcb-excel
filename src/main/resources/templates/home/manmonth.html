@@ -28,72 +28,8 @@
 <body class="skin-blue sidebar-mini wysihtml5-supported">
 <div class="wrapper">
     <div th:replace="fragments/header :: header">&nbsp;</div>
-    <div class="content-wrapper">
-        <section class="content-header">
-            <h1>
-                ManMonth
-                <small>Version 1.0.0</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">ManMonth</li>
-            </ol>
-        </section>
-        <section class="content">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header">
-                            <h3 class="box-title">Date picker</h3>
-                        </div>
-                        <div class="box-body">
-                            <!-- Date range -->
-                            <div class="form-group">
-                                <label>Date range:</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="text" class="form-control pull-right" id="manMonthDuration"
-                                           name="daterange"/>
-                                </div>
-                                <!-- /.input group -->
-                            </div>
-                            <!-- /.form group -->
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer clearfix no-border">
-                            <button type="button" class="btn btn-default pull-right" id="manMonthSubmit"><i
-                                    class="fa fa-share"></i> Submit
-                            </button>
-                        </div>
-                        <!-- /.box-footer -->
-                    </div>
-                    <!-- /.box -->
-                </div>
-                <!-- /.col-md-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-solid">
-                        <div class="box-header with-border">
-                            <i class="fa fa-text-width"></i>
-
-                            <h3 class="box-title">ManMonth Result</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <p id="manMonthResult"></p>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                </div>
-                <!-- /.col-md-12 -->
-            </div>
-            <!-- /.row -->
-        </section>
-    </div>
+    <div th:replace="fragments/left_sidebar :: left_sidebar">&nbsp;</div>
+    <div th:replace="fragments/main/manmonth :: manmonth">&nbsp;</div>
     <!--<footer th:replace="fragments/footer :: ${#authentication.principal.isAdmin()} ? 'footer-admin' : 'footer'">&copy; 2013 The Static Templates</footer>-->
     <footer th:replace="fragments/footer :: 'footer'">&copy; 2016 devarchi33-lcb-excel</footer>
 </div>
