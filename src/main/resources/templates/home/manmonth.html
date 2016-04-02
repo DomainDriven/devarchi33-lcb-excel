@@ -92,13 +92,8 @@
             <!-- /.row -->
         </section>
     </div>
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 1.0.0
-        </div>
-        <strong>Copyright © 2016 <a href="https://github.com/skyfly33">devarchi33</a>.</strong> All rights
-        reserved.
-    </footer>
+    <!--<footer th:replace="fragments/footer :: ${#authentication.principal.isAdmin()} ? 'footer-admin' : 'footer'">&copy; 2013 The Static Templates</footer>-->
+    <footer th:replace="fragments/footer :: 'footer'">&copy; 2016 devarchi33-lcb-excel</footer>
 </div>
 <!-- ./wrapper -->
 <!-- jQuery 2.2.0 -->
