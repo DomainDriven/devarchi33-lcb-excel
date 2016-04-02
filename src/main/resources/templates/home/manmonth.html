@@ -9,16 +9,17 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
     <!-- Theme style -->
-    <link rel="stylesheet" href="/webjars/adminlte/2.3.2/dist/css/AdminLTE.min.css"/>
+    <link rel="stylesheet" href="/assets/bower_components/AdminLTE/dist/css/AdminLTE.min.css"/>
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="/webjars/adminlte/2.3.2/dist/css/skins/_all-skins.min.css"/>
+    <link rel="stylesheet" href="/assets/bower_components/AdminLTE/dist/css/skins/_all-skins.min.css"/>
     <!-- Date Picker -->
-    <link rel="stylesheet" href="/webjars/adminlte/2.3.2/plugins/datepicker/datepicker3.css"/>
+    <link rel="stylesheet" href="/assets/bower_components/AdminLTE/plugins/datepicker/datepicker3.css"/>
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="/webjars/adminlte/2.3.2/plugins/daterangepicker/daterangepicker-bs3.css"/>
+    <link rel="stylesheet" href="/assets/bower_components/AdminLTE/plugins/daterangepicker/daterangepicker-bs3.css"/>
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="/webjars/adminlte/2.3.2/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
+    <link rel="stylesheet"
+          href="/assets/bower_components/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"/>
 </head>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -97,34 +98,14 @@
 </div>
 <!-- ./wrapper -->
 <!-- jQuery 2.2.0 -->
-<script src="/webjars/adminlte/2.3.2/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="/assets/bower_components/AdminLTE/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="/webjars/adminlte/2.3.2/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/bower_components/AdminLTE/bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/webjars/adminlte/2.3.2/dist/js/app.min.js"></script>
+<script src="/assets/bower_components/AdminLTE/dist/js/app.min.js"></script>
 <!-- date-range-picker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-<script src="/webjars/adminlte/2.3.2/plugins/daterangepicker/daterangepicker.js"></script>
-<script>
-    $(function () {
-        $('input[name="daterange"]').daterangepicker();
-        $('#manMonthSubmit').on('click', function () {
-            var duration = $('#manMonthDuration').val();
-            $.ajax({
-                url: 'calcManMonth',
-                type: 'post',
-                data: {
-                    duration: duration
-                },
-                success: function (response) {
-                    $("#manMonthResult").text(response);
-                },
-                error: function (err) {
-                    alert(JSON.stringify(err));
-                }
-            });
-        });
-    });
-</script>
+<script src="/assets/bower_components/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="/assets/js/manmonth.js"></script>
 </body>
 </html>

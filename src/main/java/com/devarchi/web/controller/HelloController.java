@@ -35,7 +35,7 @@ public class HelloController {
 
         Integer result = calcManMonth(duration);
 
-        return result.toString() + " 개월";
+        return result.toString() + " month";
     }
 
     /**
@@ -128,20 +128,20 @@ public class HelloController {
 //    private MemberRepository memberRepository;
 //
 //    @RequestMapping("home")
-//    public String sayHello(Model model) {
+//    assets String sayHello(Model model) {
 //        model.addAttribute("greeting", "Hello");
 //        return APP_DIR + "index";
 //    }
 //
 //    @RequestMapping("/")
 //    @ResponseBody
-//    public String home() {
+//    assets String home() {
 //        return "Hello, springboot";
 //    }
 //
 //    @RequestMapping("list")
 //    @ResponseBody
-//    public String memberList() {
+//    assets String memberList() {
 //        List<Member> memberList = new ArrayList<Member>();
 //
 //        for (Member member : memberRepository.findAll()) {
@@ -153,7 +153,7 @@ public class HelloController {
 //
 //    @RequestMapping("listByLastName")
 //    @ResponseBody
-//    public String onePerson() {
+//    assets String onePerson() {
 //        List<Member> memberList = new ArrayList<Member>();
 //
 //        for (Member member : memberRepository.findByLastName("이")) {
@@ -164,7 +164,7 @@ public class HelloController {
 //    }
 //
 //    @RequestMapping("add")
-//    public void memberAdd() {
+//    assets void memberAdd() {
 //        memberRepository.save(new Member("face", "new"));
 //        memberRepository.save(new Member("face", "old"));
 //    }

@@ -42,7 +42,7 @@ dependencies {
     compile('org.flywaydb:flyway-core')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     //ui dependencies
-    compile 'org.webjars.bower:adminlte:2.3.2'
+//    compile 'org.webjars.bower:adminlte:2.3.2'
 }
 
 
