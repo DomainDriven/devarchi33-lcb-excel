@@ -35,6 +35,14 @@ public class HelloController {
     public String manMonth(@RequestParam String duration) {
         logger.info("Input Duration: {}", duration);
 
+        /**
+         * http://redutan.github.io/2016/04/01/good-if 참고함.
+         */
+        if (duration == null || duration.equals("")) {
+            return "please input duration!";
+        }
+
+
         Float result = calcManMonth(duration);
 
         logger.info("Result: {}", result);
