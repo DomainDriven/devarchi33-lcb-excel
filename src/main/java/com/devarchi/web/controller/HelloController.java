@@ -1,5 +1,6 @@
 package com.devarchi.web.controller;
 
+import com.devarchi.web.dto.ManMonthDuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ public class HelloController {
     private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
     private static final Calendar cal = Calendar.getInstance();
 
+    private ManMonthDuration duration;
     private final String APP_DIR = "home/";
 
     @RequestMapping("manMonth")
@@ -37,35 +39,6 @@ public class HelloController {
 
         logger.info("Result: {}", result);
         return result.toString() + " month";
-    }
-
-    /**
-     * 기간을 입력 받아 시작일 과 종료일로 분리한다.
-     *
-     * @param duration
-     * @return
-     */
-    private String[] splitStartEndDay(String duration) {
-        logger.debug("SplitStartEndDay: {}", duration);
-        String[] splitDuration = duration.split(" - ", 2);
-        return splitDuration;
-    }
-
-    /**
-     * 날짜를 입력 받아 연, 월, 일 로 분리한 후 연산이 가능하도록 Integer 형태로 변환하여 리턴한다.
-     *
-     * @param day
-     * @return
-     */
-    private Integer[] splitYearMonthDay(String day) {
-        logger.debug("SplitYearMonthDay: {}", day);
-        String[] splitYMD = day.split("/", 3);
-        Integer[] cnvSplitYMD = new Integer[3];
-        for (int i = 0; i < splitYMD.length; i++) {
-            cnvSplitYMD[i] = Integer.parseInt(splitYMD[i]);
-            logger.info("CnvSplitYMD: {}", cnvSplitYMD[i]);
-        }
-        return cnvSplitYMD;
     }
 
     /**
@@ -87,32 +60,24 @@ public class HelloController {
     /**
      * 기간을 입력 받아 manMonth 를 계산하여 결과 값을 리턴한다.
      *
-     * @param duration
+     * @param inputDuration
      * @return
      */
-    private float calcManMonth(String duration) {
-        logger.debug("CalcManMonth: {}", duration);
-        String[] splitStartEndDay = splitStartEndDay(duration);
+    private float calcManMonth(String inputDuration) {
+        logger.info("CalcManMonth: {}", inputDuration);
+        duration = new ManMonthDuration(inputDuration);
 
-        String startDay = splitStartEndDay[0];
-        Integer[] startYMD = splitYearMonthDay(startDay);
-        for (int info : startYMD) {
-            logger.info("StartYMD Info: {}", info);
-        }
-        Integer endOfStartDay = getEndOfMonth(startYMD);
-        Integer sYear = startYMD[2];
-        Integer sMonth = startYMD[0];
-        Integer sDay = startYMD[1];
+        String startDay = duration.getStartDay();
+        Integer endOfStartDay = getEndOfMonth(duration.getSplitStartDay());
+        Integer sYear = duration.getsYear();
+        Integer sMonth = duration.getsMonth();
+        Integer sDay = duration.getsDay();
 
-        String endDay = splitStartEndDay[1];
-        Integer[] endYMD = splitYearMonthDay(endDay);
-        for (int info : endYMD) {
-            logger.info("EndYMD Info: {}", info);
-        }
-        Integer endOfEndDay = getEndOfMonth(endYMD);
-        Integer eYear = endYMD[2];
-        Integer eMonth = endYMD[0];
-        Integer eDay = endYMD[1];
+        String endDay = duration.getEndDay();
+        Integer endOfEndDay = getEndOfMonth(duration.getSplitEndDay());
+        Integer eYear = duration.geteYear();
+        Integer eMonth = duration.geteMonth();
+        Integer eDay = duration.geteDay();
 
         logger.info("SplitDay -> StartDay : {}, EndDay : {}", startDay, endDay);
         logger.info("Start -> Year : {}, Month : {}, Day : {}", sYear, sMonth, sDay);
@@ -120,7 +85,7 @@ public class HelloController {
         logger.info("EndOfStartDay: {}", endOfStartDay);
         logger.info("EndOfEndDay: {}", endOfEndDay);
 
-        float result = 0;
+        float result;
 
         /**
          * ManMonth 핵심 로직.
