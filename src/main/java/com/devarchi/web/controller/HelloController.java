@@ -31,10 +31,11 @@ public class HelloController {
     @RequestMapping(value = "calcManMonth", method = RequestMethod.POST)
     @ResponseBody
     public String manMonth(@RequestParam String duration) {
-        logger.info("Input Duration: " + duration);
+        logger.info("Input Duration: {}", duration);
 
-        Integer result = calcManMonth(duration);
+        Float result = calcManMonth(duration);
 
+        logger.info("Result: {}", result);
         return result.toString() + " month";
     }
 
@@ -45,7 +46,7 @@ public class HelloController {
      * @return
      */
     private String[] splitStartEndDay(String duration) {
-        logger.debug("SplitStartEndDay: " + duration);
+        logger.debug("SplitStartEndDay: {}", duration);
         String[] splitDuration = duration.split(" - ", 2);
         return splitDuration;
     }
@@ -57,12 +58,12 @@ public class HelloController {
      * @return
      */
     private Integer[] splitYearMonthDay(String day) {
-        logger.debug("SplitYearMonthDay: " + day);
+        logger.debug("SplitYearMonthDay: {}", day);
         String[] splitYMD = day.split("/", 3);
         Integer[] cnvSplitYMD = new Integer[3];
         for (int i = 0; i < splitYMD.length; i++) {
             cnvSplitYMD[i] = Integer.parseInt(splitYMD[i]);
-            logger.info("CnvSplitYMD: " + cnvSplitYMD[i]);
+            logger.info("CnvSplitYMD: {}", cnvSplitYMD[i]);
         }
         return cnvSplitYMD;
     }
@@ -74,9 +75,12 @@ public class HelloController {
      * @return
      */
     private int getEndOfMonth(Integer[] date) {
-        logger.debug("GetEndOfMonth: " + date);
-        cal.set(date[0], date[1] - 1, date[2]);
+        /**
+         * cal.set(year, month, day)
+         */
+        cal.set(date[2], date[0] - 1, date[1]);
         int endOfMonth = cal.getActualMaximum(Calendar.DATE);
+        logger.info("EndOfMonth: {}", endOfMonth);
         return endOfMonth;
     }
 
@@ -86,12 +90,15 @@ public class HelloController {
      * @param duration
      * @return
      */
-    private int calcManMonth(String duration) {
-        logger.debug("CalcManMonth: " + duration);
+    private float calcManMonth(String duration) {
+        logger.debug("CalcManMonth: {}", duration);
         String[] splitStartEndDay = splitStartEndDay(duration);
 
         String startDay = splitStartEndDay[0];
         Integer[] startYMD = splitYearMonthDay(startDay);
+        for (int info : startYMD) {
+            logger.info("StartYMD Info: {}", info);
+        }
         Integer endOfStartDay = getEndOfMonth(startYMD);
         Integer sYear = startYMD[2];
         Integer sMonth = startYMD[0];
@@ -99,6 +106,9 @@ public class HelloController {
 
         String endDay = splitStartEndDay[1];
         Integer[] endYMD = splitYearMonthDay(endDay);
+        for (int info : endYMD) {
+            logger.info("EndYMD Info: {}", info);
+        }
         Integer endOfEndDay = getEndOfMonth(endYMD);
         Integer eYear = endYMD[2];
         Integer eMonth = endYMD[0];
@@ -107,18 +117,20 @@ public class HelloController {
         logger.info("SplitDay -> StartDay : {}, EndDay : {}", startDay, endDay);
         logger.info("Start -> Year : {}, Month : {}, Day : {}", sYear, sMonth, sDay);
         logger.info("End -> Year : {}, Month : {}, Day : {}", eYear, eMonth, eDay);
+        logger.info("EndOfStartDay: {}", endOfStartDay);
+        logger.info("EndOfEndDay: {}", endOfEndDay);
 
-        int result = 0;
+        float result = 0;
 
         /**
          * ManMonth 핵심 로직.
          */
         if (sDay == eDay + 1) {
-            result = (eYear - sYear) * 12 + (eMonth - sMonth);
+            result = (float) ((eYear - sYear) * 12 + (eMonth - sMonth));
         } else {
             result = (eYear - sYear) * 12 + (eMonth - sMonth - 1)
-                    + ((endOfStartDay - sDay + 1) / endOfStartDay)
-                    + (eDay / endOfEndDay);
+                    + (float) ((endOfStartDay - sDay + 1) / endOfStartDay)
+                    + (float) (eDay / endOfEndDay);
         }
 
         return result;
